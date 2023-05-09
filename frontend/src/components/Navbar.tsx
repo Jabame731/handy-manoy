@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { cover } from '../assets';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +53,7 @@ function Navbar() {
                 HandyManoy.
               </span>
             </div>
-            <div className='hidden sm:block sm:ml-6'>
+            <div className='font-poppins hidden sm:block sm:ml-6'>
               <div className='flex space-x-4'>
                 <span className='bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Home
@@ -70,6 +70,20 @@ function Navbar() {
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Contact Us
                 </span>
+
+                <Link
+                  to='/login'
+                  className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to='/register'
+                  className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                >
+                  Register
+                </Link>
               </div>
             </div>
           </div>
@@ -85,7 +99,7 @@ function Navbar() {
             transition={{ duration: 0.5 }}
             className='sm:hidden'
           >
-            <div className='px-2 pt-2 pb-3 space-y-1'>
+            <div className='px-2 pt-2 pb-3 space-y-1 font-poppins'>
               <span className='bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium'>
                 Home
               </span>
@@ -97,10 +111,19 @@ function Navbar() {
               <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
                 Services
               </span>
-
               <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
                 Contact Us
               </span>
+              <Link to='/login'>
+                <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
+                  Login
+                </span>
+              </Link>
+              <Link to='/register'>
+                <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
+                  Register
+                </span>
+              </Link>
             </div>
           </motion.div>
         )}
