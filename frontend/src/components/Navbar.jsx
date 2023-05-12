@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { FiLogOut } from 'react-icons/fi';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,18 +60,17 @@ function Navbar() {
                 <span className='bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Home
                 </span>
-
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   About
                 </span>
-
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Services
                 </span>
-
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Contact Us
                 </span>
+
+                <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></span>
 
                 <Link
                   to='/login'
@@ -77,7 +78,6 @@ function Navbar() {
                 >
                   Login
                 </Link>
-
                 <Link
                   to='/register'
                   className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
@@ -114,15 +114,20 @@ function Navbar() {
               <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
                 Contact Us
               </span>
-              <Link to='/login'>
-                <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
-                  Login
-                </span>
+
+              <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></span>
+
+              <Link
+                to='/login'
+                className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+              >
+                Login
               </Link>
-              <Link to='/register'>
-                <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
-                  Register
-                </span>
+              <Link
+                to='/register'
+                className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+              >
+                Register
               </Link>
             </div>
           </motion.div>

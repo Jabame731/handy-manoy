@@ -1,10 +1,9 @@
-import React from 'react';
 import image from '../assets/signin-image.jpg';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
-    <div className='font-poppins flex flex-row bg-primary'>
+    <div className='font-poppins flex flex-row bg-primary h-full'>
       <div className='basis-full sm:basis-3/4'>
         <div className='max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
           <div className='max-w-lg mx-auto'>

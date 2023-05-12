@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import multer from 'multer';
 import authRoute from './routes/authorization.js';
 
@@ -7,6 +8,8 @@ const app = express();
 //to allow form in sending data in the api eg. postman
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 //image upload using multer
 const storage = multer.diskStorage({

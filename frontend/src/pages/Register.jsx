@@ -16,6 +16,7 @@ const Register = () => {
               <input
                 id='username'
                 type='text'
+                name='username'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -25,6 +26,7 @@ const Register = () => {
               <input
                 id='emailAddress'
                 type='email'
+                name='emailAddress'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -34,6 +36,7 @@ const Register = () => {
               <input
                 id='password'
                 type='password'
+                name='password'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -41,8 +44,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Password Confirmation</label>
               <input
-                id='passwordConfirmation'
+                id='confirmPassword'
                 type='password'
+                name='confirmPassword'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -53,8 +57,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite '>First Name</label>
               <input
-                id='first_name'
+                id='firstName'
                 type='text'
+                name='firstName'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -62,8 +67,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Middle Name</label>
               <input
-                id='middle_name'
-                type='email'
+                id='middleName'
+                type='text'
+                name='middleName'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -71,8 +77,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Last Name</label>
               <input
-                id='last_name'
-                type='last_name'
+                id='lastName'
+                type='text'
+                name='lastName'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -83,8 +90,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite '>Address</label>
               <input
-                id='first_name'
+                id='address'
                 type='text'
+                name='address'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -93,8 +101,9 @@ const Register = () => {
                 Birth Date
               </label>
               <input
-                id='date'
+                id='birthDate'
                 type='date'
+                name='birthDate'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -105,8 +114,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite '>Phone Number</label>
               <input
-                id='phone_number'
+                id='phoneNumber'
                 type='text'
+                name='phoneNumber'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -114,8 +124,9 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Telephone Number</label>
               <input
-                id='telephone_number'
+                id='telephoneNumber'
                 type='text'
+                name='telephoneNumber'
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -146,10 +157,11 @@ const Register = () => {
                   <label className='relative cursor-pointer bg-primary rounded-md font-medium text-indigo-600 hover:text-indigo-500'>
                     <span className=''>Upload a file</span>
                     <input
-                      id='file-upload'
-                      name='file-upload'
+                      id='image'
+                      name='image'
                       type='file'
                       className='sr-only'
+                      value=''
                     />
                   </label>
                   <p className='pl-1 text-white'>or drag and drop</p>
@@ -174,7 +186,10 @@ const Register = () => {
               </Link>
             </p>
 
-            <button className='text-sm px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-gray-600 sm:text-sm'>
+            <button
+              className='text-sm px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-gray-600 sm:text-sm'
+              type='submit'
+            >
               Register
             </button>
           </div>

@@ -1,14 +1,7 @@
 import React from 'react';
-import { features } from '../constant';
+import { features } from '../utilities/information';
 
-interface FeatureCardProps {
-  icon: string;
-  title: string;
-  content: string;
-  index: number;
-}
-
-const FeatureCard = ({ icon, title, content, index }: FeatureCardProps) => (
+const FeatureCard = ({ icon, title, content, index }) => (
   <div
     className={`flex flex-row p-6 rounded-[20px] ${
       index !== features.length ? 'mb-6' : 'mb-0'

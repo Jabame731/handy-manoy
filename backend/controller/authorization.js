@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 export const registerUser = (req, res) => {
   //parsed request body data
   const {
+    username,
     email,
     password,
     first_name,
@@ -22,6 +23,10 @@ export const registerUser = (req, res) => {
   connection.query(query, [email], (err, data) => {
     if (err) return res.json(err);
 
+    if (!username || !email || !password) {
+      return res.status(400).json('Please provide required fields');
+    }
+
     if (data.length) return res.status(409).json('User Already Exist!');
 
     //hash the password
@@ -29,9 +34,10 @@ export const registerUser = (req, res) => {
     const hash = bcrypt.hashSync(password, salt);
 
     const query =
-      'INSERT INTO users (`email`, `password`, `first_name`, `middle_name`, `last_name`, `image`, `address`, `phone_number`, `telephone_number`) VALUES (?)';
+      'INSERT INTO users (`username`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `image`, `address`, `phone_number`, `telephone_number`) VALUES (?)';
 
     const values = [
+      username,
       email,
       hash,
       first_name,
@@ -46,7 +52,7 @@ export const registerUser = (req, res) => {
     connection.query(query, [values], (err, data) => {
       if (err) return res.json(err);
 
-      return res.status(200).json('User has been registered');
+      return res.status(200).json('User is Registered');
     });
   });
 };
@@ -68,6 +74,7 @@ export const loginUser = (req, res) => {
 
     res.status(200).json({
       id: data[0].id,
+      username: data[0].username,
       first_name: data[0].first_name,
       middle_name: data[0].middle_name,
       last_name: data[0].last_name,

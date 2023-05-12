@@ -1,5 +1,5 @@
 import React from 'react';
-import { services } from '../constant';
+import { services } from '../utilities/information';
 
 const Services = () => {
   return (
