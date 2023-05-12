@@ -1,6 +1,6 @@
 import React from 'react';
-import { cover } from '../assets';
 import { footerLinks, socialMedia } from '../utilities/information';
+import { cover } from '../assets';
 
 const Footer = () => {
   return (

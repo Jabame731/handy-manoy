@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import BusinessBanner from './components/BusinesBanner';
+import BusinessBanner from './components/BusinessBanner';
 import Services from './components/Services';
 import Footer from './components/Footer';
 

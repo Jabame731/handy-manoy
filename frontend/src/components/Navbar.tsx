@@ -1,11 +1,24 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+// import { logoutUser } from '../store/auth/action';
+import { reset } from '../store/auth/reducer';
 import { FiLogOut } from 'react-icons/fi';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const { user } = useAppSelector((state) => state.auth);
+
+  const onLogout = () => {
+    // dispatch(logoutUser());
+    dispatch(reset());
+    navigate('/');
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -70,20 +83,34 @@ function Navbar() {
                   Contact Us
                 </span>
 
-                <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></span>
-
-                <Link
-                  to='/login'
-                  className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-                >
-                  Login
-                </Link>
-                <Link
-                  to='/register'
-                  className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-                >
-                  Register
-                </Link>
+                {user ? (
+                  <>
+                    <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
+                      Welcome {user.first_name}
+                    </span>
+                    <button
+                      onClick={onLogout}
+                      className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    >
+                      <FiLogOut />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to='/login'
+                      className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to='/register'
+                      className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -115,20 +142,34 @@ function Navbar() {
                 Contact Us
               </span>
 
-              <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'></span>
-
-              <Link
-                to='/login'
-                className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-              >
-                Login
-              </Link>
-              <Link
-                to='/register'
-                className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-              >
-                Register
-              </Link>
+              {user ? (
+                <>
+                  <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
+                    Welcome {user.first_name}
+                  </span>
+                  <button
+                    onClick={onLogout}
+                    className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                  >
+                    <FiLogOut />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to='/login'
+                    className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to='/register'
+                    className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </motion.div>
         )}

@@ -1,6 +1,90 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Slide, toast } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { reset } from '../store/auth/reducer';
+import { registerUser } from '../store/auth/action';
 
 const Register = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [registerData, setRegisterData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    first_name: '',
+    middle_name: '',
+    last_name: '',
+    address: '',
+    birth_date: '',
+    phone_number: '',
+    telephone_number: '',
+  });
+
+  const {
+    username,
+    email,
+    password,
+    confirmPassword,
+    first_name,
+    middle_name,
+    last_name,
+    address,
+    birth_date,
+    phone_number,
+    telephone_number,
+  } = registerData;
+
+  const { user, isError, isSuccess } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Opps Error Occurred', {
+        transition: Slide,
+        theme: 'colored',
+      });
+    }
+
+    if (isSuccess) {
+      toast.success('You are Registered');
+      navigate('/login');
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, navigate, dispatch]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRegisterData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleRegister = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error('Opps password do not match! Try again');
+    } else {
+      const userData = {
+        username,
+        email,
+        password,
+        first_name,
+        middle_name,
+        last_name,
+        address,
+        birth_date,
+        phone_number,
+        telephone_number,
+      };
+
+      dispatch(registerUser(userData));
+    }
+  };
+
   return (
     <div className='bg-primary font-poppins'>
       <section className='max-w-4xl p-6 mx-auto rounded-md shadow-md'>
@@ -17,6 +101,8 @@ const Register = () => {
                 id='username'
                 type='text'
                 name='username'
+                value={username}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -24,9 +110,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Email Address</label>
               <input
-                id='emailAddress'
+                id='email'
                 type='email'
-                name='emailAddress'
+                name='email'
+                value={email}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -37,6 +125,8 @@ const Register = () => {
                 id='password'
                 type='password'
                 name='password'
+                value={password}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -47,6 +137,8 @@ const Register = () => {
                 id='confirmPassword'
                 type='password'
                 name='confirmPassword'
+                value={confirmPassword}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -57,9 +149,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite '>First Name</label>
               <input
-                id='firstName'
+                id='first_name'
                 type='text'
-                name='firstName'
+                name='first_name'
+                value={first_name}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -67,9 +161,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Middle Name</label>
               <input
-                id='middleName'
+                id='middle_name'
                 type='text'
-                name='middleName'
+                name='middle_name'
+                value={middle_name}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -77,9 +173,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Last Name</label>
               <input
-                id='lastName'
+                id='last_name'
                 type='text'
-                name='lastName'
+                name='last_name'
+                value={last_name}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -93,6 +191,8 @@ const Register = () => {
                 id='address'
                 type='text'
                 name='address'
+                value={address}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -101,9 +201,11 @@ const Register = () => {
                 Birth Date
               </label>
               <input
-                id='birthDate'
+                id='birth_date'
                 type='date'
-                name='birthDate'
+                name='birth_date'
+                value={birth_date}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -114,9 +216,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite '>Phone Number</label>
               <input
-                id='phoneNumber'
+                id='phone_number'
                 type='text'
-                name='phoneNumber'
+                name='phone_number'
+                value={phone_number}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -124,9 +228,11 @@ const Register = () => {
             <div>
               <label className='text-dimWhite'>Telephone Number</label>
               <input
-                id='telephoneNumber'
+                id='telephone_number'
                 type='text'
-                name='telephoneNumber'
+                name='telephone_number'
+                value={telephone_number}
+                onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
@@ -189,6 +295,7 @@ const Register = () => {
             <button
               className='text-sm px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-gray-600 sm:text-sm'
               type='submit'
+              onClick={handleRegister}
             >
               Register
             </button>
