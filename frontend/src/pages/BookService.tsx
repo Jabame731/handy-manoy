@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { serviceName, serviceType } from '../utilities/information';
-import { useAppSelector } from '../store/hooks';
-import axios from 'axios';
-import { APP_BASE_URL } from '../utilities/constant';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+
+import Loading from '../components/Loading';
+import { reset } from '../store/book-service/reducer';
+import { createServiceBook } from '../store/book-service/action';
 
 const BookService = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { user } = useAppSelector((state) => state.auth);
 
-  console.log(user?.id);
+  const { isLoading, isError, isSuccess } = useAppSelector(
+    (state) => state.service
+  );
 
   const [selectedServiceName, setselectedServiceName] = useState<
     { value: string; label: string } | undefined
@@ -21,6 +28,32 @@ const BookService = () => {
 
   const [serviceNamePrice, setServiceNamePrice] = useState<number>(0);
   const [serviceTypePrice, setServiceTypeNamePrice] = useState<number>(0);
+
+  const [noteText, setNoteText] = useState({
+    note: '',
+  });
+
+  const { note } = noteText;
+
+  useEffect(() => {
+    if (isError) {
+      console.log('error');
+    }
+
+    if (isSuccess) {
+      navigate('/user-dashboard');
+    }
+
+    dispatch(reset());
+  }, [user, navigate, isError, isSuccess, dispatch]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const handleNoteChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNoteText({ note: e.target.value });
+  };
 
   const handleSNameChange: React.ChangeEventHandler<HTMLSelectElement> = (
     event
@@ -46,24 +79,21 @@ const BookService = () => {
     );
   };
 
-  const totalPrice = serviceNamePrice + serviceTypePrice;
+  const s_price = serviceNamePrice + serviceTypePrice;
   const s_name = selectedServiceName?.label;
   const s_type = selectedServiceType?.label;
-
-  const userObj = JSON.parse(localStorage.getItem('user') as string);
-  const token = userObj.token;
-  console.log(token);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (user?.token) {
-      await axios.post(`${APP_BASE_URL}/createService`, {
-        s_name,
-        s_type,
-        totalPrice,
-      });
-    }
+    const serviceData = {
+      s_name,
+      s_type,
+      s_price,
+      note,
+    };
+
+    dispatch(createServiceBook(serviceData));
   };
 
   return (
@@ -121,7 +151,7 @@ const BookService = () => {
                   Service Price Total:
                 </label>
                 <p className='font-poppins mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm'>
-                  ₱ {totalPrice.toLocaleString()}
+                  ₱ {s_price.toLocaleString()}
                 </p>
               </div>
             </div>
@@ -132,6 +162,8 @@ const BookService = () => {
                 <textarea
                   name=''
                   id=''
+                  value={note}
+                  onChange={handleNoteChange}
                   cols={30}
                   rows={10}
                   className='font-poppins mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm'
