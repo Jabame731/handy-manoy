@@ -17,6 +17,12 @@ import i5 from './i5.png';
 import i6 from './i6.png';
 import cover from './cover.png';
 import profile from './profile.png';
+import one from './1.jpg';
+import two from './2.png';
+import three from './3.jpg';
+import four from './auto.png';
+import p1 from './p1.jpg';
+import p3 from './p3.jpg';
 
 export {
   b,
@@ -38,4 +44,10 @@ export {
   i6,
   cover,
   profile,
+  one,
+  two,
+  three,
+  four,
+  p1,
+  p3,
 };

@@ -177,3 +177,69 @@ export const services = [
       ' Our well-trained and professional service team values your time and is at your service to complete your 52-point check-up. Oil change and repair – all in one quick hour!  ',
   },
 ];
+
+export const serviceName = [
+  {
+    value: '1',
+    label: 'Car Service - Overhaul',
+    price: 2500,
+  },
+  {
+    value: '2',
+    label: 'Car Maintennance',
+    price: 1400,
+  },
+  {
+    value: '3',
+    label: 'Computer Repair',
+    price: 2410,
+  },
+  {
+    value: '4',
+    label: 'Change Oil',
+    price: 410,
+  },
+  {
+    value: '5',
+    label: 'Indoor Plumbing',
+    price: 450,
+  },
+  {
+    value: '6',
+    label: 'Auto Repair Machine',
+    price: 21250,
+  },
+  {
+    value: '7',
+    label: 'Custom Computer Build',
+    price: 22250,
+  },
+];
+
+export const serviceType = [
+  {
+    value: '1',
+    label: 'Luxury',
+    price: 22250,
+  },
+  {
+    value: '2',
+    label: 'Normal',
+    price: 12250,
+  },
+  {
+    value: '3',
+    label: 'Semi-Normal',
+    price: 26250,
+  },
+  {
+    value: '4',
+    label: 'Damaged',
+    price: 50,
+  },
+  {
+    value: '5',
+    label: 'Prefer Not to Say',
+    price: 0,
+  },
+];

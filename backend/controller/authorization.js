@@ -82,6 +82,7 @@ export const loginUser = (req, res) => {
       address: data[0].address,
       phone_number: data[0].phone_number,
       telephone_number: data[0].telephone_number,
+      user_role: data[0].user_role,
       token: generateToken(data[0].id),
     });
   });

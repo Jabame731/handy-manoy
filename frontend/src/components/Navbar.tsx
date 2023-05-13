@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-// import { logoutUser } from '../store/auth/action';
+import { logoutUser } from '../store/auth/action';
 import { reset } from '../store/auth/reducer';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -14,8 +14,10 @@ function Navbar() {
 
   const { user } = useAppSelector((state) => state.auth);
 
+  console.log(user);
+
   const onLogout = () => {
-    // dispatch(logoutUser());
+    dispatch(logoutUser());
     dispatch(reset());
     navigate('/');
   };
@@ -76,18 +78,30 @@ function Navbar() {
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   About
                 </span>
-                <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
+                <span className='text-center flex text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer'>
                   Services
                 </span>
                 <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
                   Contact Us
                 </span>
-
                 {user ? (
                   <>
-                    <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
-                      Welcome {user.first_name}
-                    </span>
+                    <Link to='/book-service'>
+                      <span className='flex text-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
+                        Book Service
+                      </span>
+                    </Link>
+                    <Link
+                      to={`${
+                        user.user_role === 'user'
+                          ? '/user-dashboard'
+                          : '/admin-dashboard'
+                      }`}
+                    >
+                      <span className='text-center flex text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer'>
+                        Welcome {user.first_name}
+                      </span>
+                    </Link>
                     <button
                       onClick={onLogout}
                       className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
@@ -144,9 +158,21 @@ function Navbar() {
 
               {user ? (
                 <>
-                  <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
-                    Welcome {user.first_name}
+                  {' '}
+                  <span className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>
+                    Book Service
                   </span>
+                  <Link
+                    to={`${
+                      user.user_role === 'user'
+                        ? '/user-dashboard'
+                        : '/admin-dashboard'
+                    }`}
+                  >
+                    <span className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer'>
+                      Welcome {user.first_name}
+                    </span>
+                  </Link>
                   <button
                     onClick={onLogout}
                     className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'

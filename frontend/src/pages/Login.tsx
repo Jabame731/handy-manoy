@@ -22,6 +22,8 @@ const Login = () => {
     (state) => state.auth
   );
 
+  console.log(user);
+
   useEffect(() => {
     if (isError) {
       toast.error('Opps Error Occured', {

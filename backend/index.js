@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import authRoute from './routes/authorization.js';
+import serviceRoute from './routes/services.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors());
+app.use(cookieParser());
 
 //image upload using multer
 const storage = multer.diskStorage({
@@ -29,6 +32,7 @@ app.post('api/upload', upload.single('file'), function (req, res, next) {
 });
 
 app.use('/api', authRoute);
+app.use('/api', serviceRoute);
 
 const port = 8800;
 app.listen(port, () => {

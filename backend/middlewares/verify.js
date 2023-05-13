@@ -2,24 +2,40 @@ import jwt from 'jsonwebtoken';
 import { connection } from '../config/db.js';
 
 export const verifyUser = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  let token;
 
-  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-    if (err) return res.status(401).json('Invalid Token');
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
 
-    const { id } = decoded;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-    const query = 'SELECT * FROM `users` WHERE `id` = ?';
-    connection.query(query, [id], (err, data) => {
-      if (err) throw err;
+      const query = 'SELECT * FROM `users` WHERE `id` = ?';
 
-      if (!data.length) return res.status(401).json('User not Found');
+      connection.query(query, [decoded.id], (err, data) => {
+        if (err) {
+          console.log(err);
+          res.status(401);
+          throw new Error('Not Authorized');
+        }
 
-      req.user = data[0];
+        req.user = data[0];
+        next();
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(401);
+      throw new Error('Not authorized');
+    }
+  }
 
-      next();
-    });
-  });
+  if (!token) {
+    res.status(401);
+    throw new Error('Not Authorized, no token');
+  }
 };
 
 export const checkUserRole = (req, res, next) => {

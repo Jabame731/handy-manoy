@@ -2,7 +2,10 @@ import React from 'react';
 
 const Loading = () => {
   return (
-    <div className='flex items-center justify-center h-[300px]'>
+    <div
+      className='bg-primary flex items-center justify-center h-screen
+    '
+    >
       <div className='text-center'>
         <div role='status'>
           <svg
