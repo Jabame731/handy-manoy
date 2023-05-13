@@ -14,8 +14,6 @@ function Navbar() {
 
   const { user } = useAppSelector((state) => state.auth);
 
-  console.log(user);
-
   const onLogout = () => {
     dispatch(logoutUser());
     dispatch(reset());
