@@ -13,7 +13,7 @@ export interface ServiceUserInput {
 }
 
 export interface ServiceState {
-  service: Service[];
+  services: Service[];
   isError: boolean;
   isSuccess: boolean;
   isLoading: boolean;

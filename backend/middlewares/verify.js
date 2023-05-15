@@ -18,8 +18,7 @@ export const verifyUser = (req, res, next) => {
       connection.query(query, [decoded.id], (err, data) => {
         if (err) {
           console.log(err);
-          res.status(401);
-          throw new Error('Not Authorized');
+          res.status(401).json('Not Authorized');
         }
 
         req.user = data[0];
@@ -27,14 +26,12 @@ export const verifyUser = (req, res, next) => {
       });
     } catch (error) {
       console.log(error);
-      res.status(401);
-      throw new Error('Not authorized');
+      res.status(401).json('Not authorized');
     }
   }
 
   if (!token) {
-    res.status(401);
-    throw new Error('Not Authorized, no token');
+    res.status(401).json('Not Authorized, no token');
   }
 };
 

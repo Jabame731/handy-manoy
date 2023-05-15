@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { ServiceUserInput } from './types';
-import { APP_BASE_URL, UPDATE_SERVICE_API } from '../../utilities/constant';
+import {
+  APP_BASE_URL,
+  GET_SERVICES_BY_USER,
+  UPDATE_SERVICE_API,
+} from '../../utilities/constant';
 import { CREATE_SERVICE_API } from '../../utilities/constant';
 
 //book a service
@@ -21,7 +25,11 @@ const createService = async (serviceData: ServiceUserInput, token: string) => {
 };
 
 //update service
-const updateService = async (serviceId: string, token: string) => {
+const updateService = async (
+  serviceId: string,
+  token: string,
+  serviceData: ServiceUserInput
+) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -30,9 +38,21 @@ const updateService = async (serviceId: string, token: string) => {
 
   const response = await axios.put(
     APP_BASE_URL + UPDATE_SERVICE_API(serviceId),
-    token,
+    serviceData,
     config
   );
+
+  return response.data;
+};
+
+const getServicesByUser = async (token: string) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(APP_BASE_URL + GET_SERVICES_BY_USER, config);
 
   return response.data;
 };
@@ -40,6 +60,7 @@ const updateService = async (serviceId: string, token: string) => {
 const bookService = {
   createService,
   updateService,
+  getServicesByUser,
 };
 
 export default bookService;

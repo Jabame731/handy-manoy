@@ -14,10 +14,6 @@ const BookService = () => {
 
   const { user } = useAppSelector((state) => state.auth);
 
-  const { isLoading, isError, isSuccess } = useAppSelector(
-    (state) => state.service
-  );
-
   const [selectedServiceName, setselectedServiceName] = useState<
     { value: string; label: string } | undefined
   >(undefined);
@@ -36,20 +32,12 @@ const BookService = () => {
   const { note } = noteText;
 
   useEffect(() => {
-    if (isError) {
-      console.log('error');
-    }
-
-    if (isSuccess) {
-      navigate('/user-dashboard');
+    if (!user) {
+      navigate('/login');
     }
 
     dispatch(reset());
-  }, [user, navigate, isError, isSuccess, dispatch]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  }, [user, dispatch, navigate]);
 
   const handleNoteChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNoteText({ note: e.target.value });

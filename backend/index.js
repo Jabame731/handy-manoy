@@ -5,6 +5,8 @@ import authRoute from './routes/authorization.js';
 import serviceRoute from './routes/services.js';
 import cookieParser from 'cookie-parser';
 
+import userRoute from './routes/user.js';
+
 const app = express();
 
 //to allow form in sending data in the api eg. postman

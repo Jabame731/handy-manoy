@@ -7,8 +7,22 @@ export const createServiceBook = createAsyncThunk<Service, ServiceUserInput>(
   async (service, thunkAPI) => {
     try {
       const authState = thunkAPI.getState() as AuthState;
+
       const token = authState.auth.user.token;
       return await bookService.createService(service, token);
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue({ err: err.data });
+    }
+  }
+);
+
+export const getServicesByUser = createAsyncThunk<Service[]>(
+  'getServiceByUserId',
+  async (_, thunkAPI) => {
+    try {
+      const authState = thunkAPI.getState() as AuthState;
+      const token = authState.auth.user.token;
+      return await bookService.getServicesByUser(token);
     } catch (err: any) {
       return thunkAPI.rejectWithValue({ err: err.data });
     }

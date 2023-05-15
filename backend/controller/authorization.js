@@ -75,6 +75,7 @@ export const loginUser = (req, res) => {
     res.status(200).json({
       id: data[0].id,
       username: data[0].username,
+      email: data[0].email,
       first_name: data[0].first_name,
       middle_name: data[0].middle_name,
       last_name: data[0].last_name,
@@ -90,7 +91,5 @@ export const loginUser = (req, res) => {
 
 //generate a unique token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: '6hr',
-  });
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY);
 };

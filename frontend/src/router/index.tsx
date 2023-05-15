@@ -7,6 +7,8 @@ import Register from '../pages/Register';
 import { UserDashboard } from '../pages/user/UserDashboard';
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import BookService from '../pages/BookService';
+import EditUser from '../pages/EditUser';
+import UserServices from '../pages/user/UserServices';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,7 @@ export const router = createBrowserRouter([
     path: '/user-dashboard',
     element: <UserDashboard />,
   },
+
   {
     path: '/admin-dashboard',
     element: <AdminDashboard />,
@@ -33,5 +36,13 @@ export const router = createBrowserRouter([
   {
     path: '/book-service',
     element: <BookService />,
+  },
+  {
+    path: '/user-dashboard/:id',
+    element: <EditUser />,
+  },
+  {
+    path: '/user-services',
+    element: <UserServices />,
   },
 ]);
