@@ -9,3 +9,5 @@ export const REGISTER_API = '/register';
 export const CREATE_SERVICE_API = '/createService';
 export const UPDATE_SERVICE_API = (id: string) => `/service/${id}`;
 export const GET_SERVICES_BY_USER = '/getService';
+
+export const EDIT_USER = (id: string) => `/updateUser/${id}`;

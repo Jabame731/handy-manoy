@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { Slide, toast } from 'react-toastify';
+import { reset } from '../store/auth/reducer';
+import { editUser } from '../store/auth/action';
+import { EditUserInput } from '../store/auth/types';
 
 const EditUser = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const location = useLocation();
+
+  const { user, isSuccess, isError } = useAppSelector((state) => state.auth);
+
   const [editData, setEditData] = useState({
     username: '',
     email: '',
@@ -26,6 +38,29 @@ const EditUser = () => {
     telephone_number,
   } = editData;
 
+  const getUserId = () => {
+    const urlParams = new URLSearchParams(location.search);
+    const userId = urlParams.get('userId');
+
+    return userId;
+  };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('something is wrong ', {
+        transition: Slide,
+        theme: 'colored',
+      });
+    }
+
+    if (isSuccess) {
+      toast.success('User is Edited Successfully');
+      navigate('/user-dashboard');
+    }
+
+    dispatch(reset());
+  }, [user, isSuccess, isError, navigate, dispatch]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditData((prevState) => ({
       ...prevState,
@@ -35,6 +70,21 @@ const EditUser = () => {
 
   const handleEditBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    const userId: string | null = getUserId();
+
+    const userData = {
+      username: username,
+      email: email,
+      first_name: first_name,
+      middle_name: middle_name,
+      last_name: last_name,
+      birth_date: birth_date,
+      address: address,
+      phone_number: phone_number,
+      telephone_number: telephone_number,
+    };
+    dispatch(editUser({ userId: userId as string, userData }));
   };
 
   return (
@@ -65,6 +115,7 @@ const EditUser = () => {
                 id='email'
                 type='email'
                 name='email'
+                disabled
                 value={email}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '

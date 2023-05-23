@@ -1,6 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { LoginUserInput, RegisterUserInput, User } from './types';
+import {
+  EditUserInput,
+  LoginUserInput,
+  RegisterUserInput,
+  User,
+} from './types';
 import authService from './service';
+import { AuthState } from '../book-service/types';
 
 export const loginUser = createAsyncThunk<User, LoginUserInput>(
   'loginUser',
@@ -26,4 +32,17 @@ export const registerUser = createAsyncThunk<User, RegisterUserInput>(
 
 export const logoutUser = createAsyncThunk('logoutUser', async () => {
   await authService.logoutUser();
+});
+
+export const editUser = createAsyncThunk<
+  User,
+  { userId: string; userData: EditUserInput }
+>('editUser', async ({ userId, userData }, thunkAPI) => {
+  try {
+    const authState = thunkAPI.getState() as AuthState;
+    const token = authState.auth.user.token;
+    return await authService.editUser(userId, userData, token);
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue({ err: err.data });
+  }
 });

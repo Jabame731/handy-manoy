@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import NotAvailable from '../../components/NotAvailable';
+import Sidebar from '../../components/Sidebar';
+import Dashboard from './Dashboard';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -12,7 +14,12 @@ const AdminDashboard = () => {
     return <NotAvailable />;
   }
 
-  return <div>AdminDashboard</div>;
+  return (
+    <>
+      <Sidebar />
+      <Dashboard />
+    </>
+  );
 };
 
 export default AdminDashboard;

@@ -24,7 +24,13 @@ const ServiceItem = ({ service }) => {
             <div className='mr-2'></div>
             <div className=''>
               <span className='font-medium flex justify-center items-center'>
-                {trimStringToLength(service.note)}
+                {service.note === '' ? (
+                  <span className='text-rose-500'>
+                    No Note Provided By The User
+                  </span>
+                ) : (
+                  trimStringToLength(service.note, 15)
+                )}
               </span>
             </div>
           </div>
@@ -49,14 +55,6 @@ const ServiceItem = ({ service }) => {
             >
               <span>{service.status}</span>
             </div>
-          </div>
-        </td>
-        <td className='py-3 px-6 text-left'>
-          <div className='flex justify-center items-center'>
-            <div className='mr-2'></div>
-            <span className='font-medium text-sky-500 cursor-pointer'>
-              Pay Now
-            </span>
           </div>
         </td>
       </tr>

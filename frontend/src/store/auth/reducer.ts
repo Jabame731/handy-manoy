@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, registerUser, logoutUser } from './action';
 import { UserState } from './types';
+import { editUser } from './action';
 
 // const userString = localStorage.getItem('user');
 // const user = userString ? JSON.parse(userString) : '';
@@ -62,6 +63,23 @@ export const userSlice = createSlice({
     builder.addCase(logoutUser.fulfilled, (state, _) => {
       state.user = null;
     });
+
+    //crud user
+    builder
+      .addCase(editUser.pending, (state, _) => {
+        state.isLoading = true;
+      })
+      .addCase(editUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.user = action.payload;
+      })
+      .addCase(editUser.rejected, (state, _) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.user = undefined;
+      });
   },
 });
 

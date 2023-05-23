@@ -1,4 +1,12 @@
-export function trimStringToLength(str: string, maxLength: number) {
+export function trimStringToLength(
+  str: string | null | undefined,
+  maxLength: number
+) {
+  if (str == null) {
+    // Handle null or undefined value
+    return 'No Note Provided by User';
+  }
+
   if (str.length <= maxLength) {
     return str;
   }
@@ -10,7 +18,7 @@ export function trimStringToLength(str: string, maxLength: number) {
     return trimmedString.slice(0, lastSpaceIndex) + '...';
   }
 
-  return trimmedString + '...';
+  return trimmedString;
 }
 
 export const colorFunction = (status: string) => {

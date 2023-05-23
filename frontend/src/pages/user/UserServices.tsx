@@ -13,6 +13,8 @@ const UserServices = () => {
 
   const { user } = useAppSelector((state) => state.auth);
 
+  console.log(user?.token);
+
   const { services, isLoading, isError } = useAppSelector(
     (state) => state.service
   );
@@ -40,7 +42,7 @@ const UserServices = () => {
       <div className='bg-primary h-screen'>
         <Navbar />
 
-        <div className='container mx-auto my-10 font-poppins '>
+        <div className='container mx-auto my-10 font-poppins'>
           <div className='min-w-full bg-primary border-gray-300 '>
             <div className='bg-primary shadow-md rounded my-6'>
               {services.length > 0 ? (
@@ -52,7 +54,6 @@ const UserServices = () => {
                       <th className='py-3 px-6 text-center'>Service Note</th>
                       <th className='py-3 px-6 text-center'>Total Price</th>
                       <th className='py-3 px-6 text-center'>Status</th>
-                      <th className='py-3 px-6 text-center'>Actions</th>
                     </tr>
                   </thead>
                   <tbody className='text-white text-sm font-light'>

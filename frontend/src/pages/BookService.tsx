@@ -3,8 +3,6 @@ import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { serviceName, serviceType } from '../utilities/information';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-
-import Loading from '../components/Loading';
 import { reset } from '../store/book-service/reducer';
 import { createServiceBook } from '../store/book-service/action';
 
@@ -13,6 +11,8 @@ const BookService = () => {
   const dispatch = useAppDispatch();
 
   const { user } = useAppSelector((state) => state.auth);
+
+  const { isSuccess } = useAppSelector((state) => state.service);
 
   const [selectedServiceName, setselectedServiceName] = useState<
     { value: string; label: string } | undefined
@@ -37,16 +37,16 @@ const BookService = () => {
     }
 
     dispatch(reset());
-  }, [user, dispatch, navigate]);
+  }, [user, dispatch, navigate, isSuccess]);
 
   const handleNoteChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNoteText({ note: e.target.value });
   };
 
   const handleSNameChange: React.ChangeEventHandler<HTMLSelectElement> = (
-    event
+    e
   ) => {
-    const value = event.target.value;
+    const value = e.target.value;
     const selectedServiceName = serviceName.find(
       (option) => option.value === value
     );
@@ -55,9 +55,9 @@ const BookService = () => {
   };
 
   const handleSTypeChange: React.ChangeEventHandler<HTMLSelectElement> = (
-    event
+    e
   ) => {
-    const value = event.target.value;
+    const value = e.target.value;
     const selectedServiceType = serviceType.find(
       (option) => option.value === value
     );
@@ -82,6 +82,7 @@ const BookService = () => {
     };
 
     dispatch(createServiceBook(serviceData));
+    navigate('/user-services');
   };
 
   return (

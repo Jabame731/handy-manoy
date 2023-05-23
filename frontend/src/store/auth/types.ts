@@ -41,3 +41,15 @@ export interface RegisterUserInput {
 export interface logoutUser {
   user?: User | null;
 }
+
+export interface EditUserInput {
+  username: string;
+  email: string;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  birth_date: string;
+  address: string;
+  phone_number: string;
+  telephone_number: string;
+}

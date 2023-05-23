@@ -9,6 +9,9 @@ import AdminDashboard from '../pages/admin/AdminDashboard';
 import BookService from '../pages/BookService';
 import EditUser from '../pages/EditUser';
 import UserServices from '../pages/user/UserServices';
+import UsersList from '../pages/admin/UsersList';
+import AdminProfile from '../pages/admin/AdminProfile';
+import Dashboard from '../pages/admin/Dashboard';
 
 export const router = createBrowserRouter([
   {
@@ -38,11 +41,19 @@ export const router = createBrowserRouter([
     element: <BookService />,
   },
   {
-    path: '/user-dashboard/:id',
+    path: '/user-dashboard/:userId',
     element: <EditUser />,
   },
   {
     path: '/user-services',
     element: <UserServices />,
+  },
+  {
+    path: '/admin-dashboard/users',
+    element: <UsersList />,
+  },
+  {
+    path: '/admin-dashboard/profile',
+    element: <AdminProfile />,
   },
 ]);

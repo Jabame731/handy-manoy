@@ -9,7 +9,7 @@ export interface ServiceUserInput {
   s_name?: string;
   s_type?: string;
   s_price?: number;
-  note: string;
+  note?: string;
 }
 
 export interface ServiceState {
