@@ -17,7 +17,7 @@ router.post(
   createAdminUserAccount
 );
 
-router.put('/updateUser/:id', verifyUser, updateUser);
+router.put('/updateUser/:id', updateUser);
 router.get('/', verifyUser, checkUserRole, getUsers);
 router.get('/:id', verifyUser, checkUserRole, getUser);
 router.delete('/:id', verifyUser, checkUserRole, deleteUser);

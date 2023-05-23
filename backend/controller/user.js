@@ -37,7 +37,7 @@ export const getUsers = (req, res) => {
 
 //update
 export const updateUser = (req, res) => {
-  const userId = req.params.id;
+  const id = req.params.id;
 
   const {
     username,
@@ -52,7 +52,7 @@ export const updateUser = (req, res) => {
 
   const query = 'SELECT * FROM `users` WHERE `id` = ?';
 
-  connection.query(query, [userId], (err, data) => {
+  connection.query(query, [id], (err, data) => {
     if (err) {
       return res.status(500).json(err);
     }
@@ -62,36 +62,38 @@ export const updateUser = (req, res) => {
     }
 
     const updateUserQuery =
-      'UPDATE `users` SET `username` = ?, `email` = ?, `first_name` = ?, `middle_name` = ?, `last_name` = ?, `address` = ?, `phone_number` = ?, `telephone_number` = ?,';
+      'UPDATE `users` SET `username` = ?, `first_name` = ?, `middle_name` = ?, `last_name` = ?, `address` = ?, `phone_number` = ?, `telephone_number` = ?, `updated_at` = ?  WHERE `id` = ?';
+
+    const date = new Date();
+    const updatedUserDate = date.toISOString().slice(0, 19).replace('T', ' ');
 
     const values = [
       username,
-      email,
       first_name,
       middle_name,
       last_name,
       address,
       phone_number,
       telephone_number,
+      updatedUserDate,
+      id,
     ];
 
-    connection.query(updateUserQuery, [values], (err, data) => {
+    connection.query(updateUserQuery, values, (err) => {
       if (err) {
         console.log(err);
-        res.status(500).json(err);
+        return res.status(500).json(err);
       }
 
-      const updatedUserQuery = 'SELECT * FROM `users` WHERE `id` = ?';
+      // Fetch the updated user from the database
+      const fetchUpdatedUserQuery = 'SELECT * FROM `users` WHERE `id` = ?';
 
-      connection.query(updatedUserQuery, [userId], (err, data) => {
+      connection.query(fetchUpdatedUserQuery, [id], (err, updatedData) => {
         if (err) {
           console.log(err);
-          return res.status(500).json('Server Error');
+          return res.status(500).json(err);
         }
-
-        const updatedUser = data[0];
-
-        return res.status(200).json(updateUser);
+        return res.status(200).json(updatedData[0]);
       });
     });
   });

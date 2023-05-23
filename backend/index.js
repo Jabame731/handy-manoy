@@ -35,6 +35,7 @@ app.post('api/upload', upload.single('file'), function (req, res, next) {
 
 app.use('/api', authRoute);
 app.use('/api', serviceRoute);
+app.use('/api', userRoute);
 
 const port = 8800;
 app.listen(port, () => {
