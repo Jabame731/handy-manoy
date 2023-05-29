@@ -1,59 +1,53 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
-import App from '../App';
-import ErrorPage from '../pages/ErrorPage';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import { UserDashboard } from '../pages/user/UserDashboard';
-import AdminDashboard from '../pages/admin/AdminDashboard';
-import BookService from '../pages/BookService';
-import EditUser from '../pages/EditUser';
-import UserServices from '../pages/user/UserServices';
-import UsersList from '../pages/admin/UsersList';
-import AdminProfile from '../pages/admin/AdminProfile';
-import Dashboard from '../pages/admin/Dashboard';
+import App from "../App";
+import ErrorPage from "../pages/ErrorPage";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import { UserDashboard } from "../pages/UsersDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
+import BookService from "../pages/BookService";
+import EditUser from "../pages/EditUser";
+import UserServices from "../pages/user/UserServices";
+import UsersList from "../pages/admin/UsersList";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
   },
   {
-    path: '/register',
+    path: "/register",
     element: <Register />,
   },
   {
-    path: '/user-dashboard',
+    path: "/profile",
     element: <UserDashboard />,
   },
 
   {
-    path: '/admin-dashboard',
+    path: "/admin",
     element: <AdminDashboard />,
   },
   {
-    path: '/book-service',
+    path: "/book-service",
     element: <BookService />,
   },
   {
-    path: '/user-dashboard/:userId',
+    path: "/profile/:userId",
     element: <EditUser />,
   },
   {
-    path: '/user-services',
+    path: "/user-services",
     element: <UserServices />,
   },
   {
-    path: '/admin-dashboard/users',
+    path: "/users",
     element: <UsersList />,
-  },
-  {
-    path: '/admin-dashboard/profile',
-    element: <AdminProfile />,
   },
 ]);

@@ -2,7 +2,9 @@ export interface Service {
   id: string;
   s_name: string;
   s_price: string;
+  s_type: string;
   note: string;
+  status: string
 }
 
 export interface ServiceUserInput {

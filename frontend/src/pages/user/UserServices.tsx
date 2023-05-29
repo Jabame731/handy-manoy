@@ -39,10 +39,10 @@ const UserServices = () => {
 
   return (
     <>
-      <div className='bg-primary h-screen'>
+      <div className='bg-primary'>
         <Navbar />
 
-        <div className='container mx-auto my-10 font-poppins'>
+        <div className='container mx-auto my-10 font-poppins h-fit'>
           <div className='min-w-full bg-primary border-gray-300 '>
             <div className='bg-primary shadow-md rounded my-6'>
               {services.length > 0 ? (
@@ -54,6 +54,7 @@ const UserServices = () => {
                       <th className='py-3 px-6 text-center'>Service Note</th>
                       <th className='py-3 px-6 text-center'>Total Price</th>
                       <th className='py-3 px-6 text-center'>Status</th>
+                      <th className='py-3 px-6 text-center'>Actions</th>
                     </tr>
                   </thead>
                   <tbody className='text-white text-sm font-light'>

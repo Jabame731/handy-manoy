@@ -1,10 +1,12 @@
 import React from 'react';
 import { colorFunction, trimStringToLength } from '../helper';
+import { ServiceProps } from '../utilities/enums';
 
-const ServiceItem = ({ service }) => {
+
+const ServiceItem = ({ service }: ServiceProps) => {
   return (
     <>
-      <tr className=' border-gray-200 hover:bg-gray-800'>
+      <tr className=' border-gray-200 hover:bg-gray-800 h-f9t'>
         <div className='flex justify-center items-center'>
           <span className='mt-[15px]'> {service.s_name}</span>
         </div>
@@ -29,7 +31,7 @@ const ServiceItem = ({ service }) => {
                     No Note Provided By The User
                   </span>
                 ) : (
-                  trimStringToLength(service.note, 15)
+                  trimStringToLength(service.note, 20)
                 )}
               </span>
             </div>
@@ -54,6 +56,16 @@ const ServiceItem = ({ service }) => {
               )}`}
             >
               <span>{service.status}</span>
+            </div>
+          </div>
+        </td>
+        <td className='py-3 px-6 text-left'>
+          <div className='flex justify-center items-center'>
+            <div className='mr-2'></div>
+            <div
+              className='flex justify-center items-center p-1 rounded-lg'
+            >
+              <span>Pay Now</span>
             </div>
           </div>
         </td>
