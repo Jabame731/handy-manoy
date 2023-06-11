@@ -102,8 +102,9 @@ const Register = () => {
                 type='text'
                 name='username'
                 value={username}
+                data-cy='input-username'
                 onChange={handleChange}
-                className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
+                className='username mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
               />
             </div>
 
@@ -113,6 +114,7 @@ const Register = () => {
                 id='email'
                 type='email'
                 name='email'
+                data-cy='input-email'
                 value={email}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -125,6 +127,7 @@ const Register = () => {
                 id='password'
                 type='password'
                 name='password'
+                data-cy='input-password'
                 value={password}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -137,6 +140,7 @@ const Register = () => {
                 id='confirmPassword'
                 type='password'
                 name='confirmPassword'
+                data-cy='input-confirm_password'
                 value={confirmPassword}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -152,6 +156,7 @@ const Register = () => {
                 id='first_name'
                 type='text'
                 name='first_name'
+                data-cy='input-first_name'
                 value={first_name}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -164,6 +169,7 @@ const Register = () => {
                 id='middle_name'
                 type='text'
                 name='middle_name'
+                data-cy='input-middle_name'
                 value={middle_name}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -176,6 +182,7 @@ const Register = () => {
                 id='last_name'
                 type='text'
                 name='last_name'
+                data-cy='input-last_name'
                 value={last_name}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -191,6 +198,7 @@ const Register = () => {
                 id='address'
                 type='text'
                 name='address'
+                data-cy='input-address'
                 value={address}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -204,6 +212,7 @@ const Register = () => {
                 id='birth_date'
                 type='date'
                 name='birth_date'
+                // data-cy='input-first-name'
                 value={birth_date}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -219,6 +228,7 @@ const Register = () => {
                 id='phone_number'
                 type='text'
                 name='phone_number'
+                data-cy='input-phone_number'
                 value={phone_number}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -231,6 +241,7 @@ const Register = () => {
                 id='telephone_number'
                 type='text'
                 name='telephone_number'
+                data-cy='input-telephone_number'
                 value={telephone_number}
                 onChange={handleChange}
                 className='mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
@@ -296,6 +307,7 @@ const Register = () => {
               className='text-sm px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-gray-600 sm:text-sm'
               type='submit'
               onClick={handleRegister}
+              data-cy='submit'
             >
               Register
             </button>

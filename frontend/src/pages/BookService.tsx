@@ -108,7 +108,11 @@ const BookService = () => {
                   className='font-poppins mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
                 >
                   {serviceName.map((option) => (
-                    <option key={option.value} value={option.value}>
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      id='serviceName'
+                    >
                       {option.label}
                     </option>
                   ))}
@@ -123,12 +127,17 @@ const BookService = () => {
                   Service Type
                 </label>
                 <select
+                  id='selectService'
                   value={selectedServiceType?.value}
                   onChange={handleSTypeChange}
                   className='font-poppins mt-2 bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm '
                 >
                   {serviceType.map((option) => (
-                    <option key={option.value} value={option.value}>
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      id={option.value}
+                    >
                       {option.label}
                     </option>
                   ))}
@@ -151,6 +160,7 @@ const BookService = () => {
                 <textarea
                   name=''
                   id=''
+                  data-cy='serviceNote'
                   value={note}
                   onChange={handleNoteChange}
                   cols={30}
@@ -165,6 +175,7 @@ const BookService = () => {
               <button
                 className='text-sm px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-gray-600 sm:text-sm'
                 type='submit'
+                data-cy='submit'
                 onClick={handleSubmit}
               >
                 Book Now

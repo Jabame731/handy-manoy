@@ -76,6 +76,7 @@ const Login = () => {
                     type='email'
                     id='email'
                     name='email'
+                    data-cy='email'
                     value={email}
                     onChange={handleChange}
                     className='bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm  '
@@ -92,6 +93,7 @@ const Login = () => {
                     type='password'
                     id='password'
                     name='password'
+                    data-cy='password'
                     value={password}
                     onChange={handleChange}
                     className='bg-primary relative block w-full appearance-none p-3 rounded-lg border border-gray-800 px-3 py-2 text-dimWhite placeholder-gray-500 focus:z-10 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring sm:text-sm'
@@ -101,6 +103,7 @@ const Login = () => {
               </div>
               <Link to='/'>
                 <button
+                  data-cy='submit'
                   type='submit'
                   className=' font-poppins block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg mt-5 '
                   onClick={handleLogin}

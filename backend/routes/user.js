@@ -20,6 +20,6 @@ router.post(
 router.put('/updateUser/:id', updateUser);
 router.get('/', verifyUser, checkUserRole, getUsers);
 router.get('/:id', verifyUser, checkUserRole, getUser);
-router.delete('/:id', verifyUser, checkUserRole, deleteUser);
+router.delete('/delete/:id', verifyUser, checkUserRole, deleteUser);
 
 export default router;

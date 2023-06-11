@@ -3,9 +3,11 @@
     "target": "es5",
     "lib": [
       "dom",
+      "es5",
       "dom.iterable",
       "esnext"
     ],
+    "types": ["cypress", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,6 +23,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "**/*.ts"
+  ],
+  "types": ["jest", "node", "cypress"]
+  
 }

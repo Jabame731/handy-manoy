@@ -1,16 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   APP_BASE_URL,
   EDIT_USER,
   LOGIN_API,
   REGISTER_API,
-} from '../../utilities/constant';
-import { EditUserInput, LoginUserInput, RegisterUserInput } from './types';
+  DELETE_USER,
+} from "../../utilities/constant";
+import { EditUserInput, LoginUserInput, RegisterUserInput } from "./types";
 
 const registerUser = async (userData: RegisterUserInput) => {
   const response = await axios.post(APP_BASE_URL + REGISTER_API, userData);
   if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
   }
   return response.data;
 };
@@ -18,13 +19,13 @@ const registerUser = async (userData: RegisterUserInput) => {
 const loginUser = async (userData: LoginUserInput) => {
   const response = await axios.post(APP_BASE_URL + LOGIN_API, userData);
   if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
   }
   return response.data;
 };
 
 const logoutUser = () => {
-  localStorage.removeItem('user');
+  localStorage.removeItem("user");
 };
 
 //crud user
@@ -47,6 +48,8 @@ const editUser = async (
 
   return response.data;
 };
+
+const deleteUser = async (userId: string, token: string) => {};
 
 const authService = {
   registerUser,
